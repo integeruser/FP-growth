@@ -1,7 +1,7 @@
 # FP-growth
-This repository contains my C++ implementation of the well-known **FP-growth** algorithm, published in the hope that it will be useful. I carefully tested the code on three different samples and results were checked against [this other implementation](http://www.borgelt.net/fpgrowth.html) of the algorithm, but please don't assume the code is completely bug-free.
+This repository contains my C++ implementation of the well-known **FP-growth** algorithm, published in the hope that it will be useful. I carefully tested the code on three different samples and results were checked against [this other implementation](http://www.borgelt.net/fpgrowth.html) of the algorithm, but please don't assume the code is completely bug-free. Use the [issue tracker](https://github.com/integeruser/FP-growth/issues) to report any problem.
 
-The files `fptree.hpp` and `fptree.cpp` contain the data structures and the algorithm, the file `main.cpp` contains a bunch of tests.
+The files `fptree.hpp` and `fptree.cpp` contain the data structures and the algorithm, while `main.cpp` contains only a bunch of tests.
 
 Compile the code using the appropriate options for C++11 (e.g. `-std=c++11` using g++).
 
