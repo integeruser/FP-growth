@@ -6,12 +6,13 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <utility>
 
 
 using Item = std::string;
 using Transaction = std::vector<Item>;
 using TransformedPrefixPath = std::pair<std::vector<Item>, unsigned>;
-using Pattern = std::set<Item>;
+using Pattern = std::pair<std::set<Item>, unsigned>;
 
 
 struct FPNode {

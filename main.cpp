@@ -33,25 +33,25 @@ void test_1() {
     const std::set<Pattern> patterns = fptree_growth( fptree );
     
     assert( patterns.size() == 19 );
-    assert( patterns.count( { a } ) );
-    assert( patterns.count( { b, a } ) );
-    assert( patterns.count( { b } ) );
-    assert( patterns.count( { c, b } ) );
-    assert( patterns.count( { c, a, b } ) );
-    assert( patterns.count( { c, a } ) );
-    assert( patterns.count( { c } ) );
-    assert( patterns.count( { d, a } ) );
-    assert( patterns.count( { d, c, a } ) );
-    assert( patterns.count( { d, c } ) );
-    assert( patterns.count( { d, b, a } ) );
-    assert( patterns.count( { d, b, c } ) );
-    assert( patterns.count( { d, b } ) );
-    assert( patterns.count( { d } ) );
-    assert( patterns.count( { e, d } ) );
-    assert( patterns.count( { e, c } ) );
-    assert( patterns.count( { e, a, d } ) );
-    assert( patterns.count( { e, a } ) );
-    assert( patterns.count( { e } ) );
+    assert( patterns.count( { { a }, 8 } ) );
+    assert( patterns.count( { { b, a }, 5 } ) );
+    assert( patterns.count( { { b }, 7 } ) );
+    assert( patterns.count( { { c, b }, 5 } ) );
+    assert( patterns.count( { { c, a, b }, 3 } ) );
+    assert( patterns.count( { { c, a }, 4 } ) );
+    assert( patterns.count( { { c }, 6 } ) );
+    assert( patterns.count( { { d, a }, 4 } ) );
+    assert( patterns.count( { { d, c, a }, 2 } ) );
+    assert( patterns.count( { { d, c }, 3 } ) );
+    assert( patterns.count( { { d, b, a }, 2 } ) );
+    assert( patterns.count( { { d, b, c }, 2 } ) );
+    assert( patterns.count( { { d, b }, 3 } ) );
+    assert( patterns.count( { { d }, 5 } ) );
+    assert( patterns.count( { { e, d }, 2 } ) );
+    assert( patterns.count( { { e, c }, 2 } ) );
+    assert( patterns.count( { { e, a, d }, 2 } ) );
+    assert( patterns.count( { { e, a }, 2 } ) );
+    assert( patterns.count( { { e }, 3 } ) );
 }
 
 void test_2() {
@@ -77,25 +77,25 @@ void test_2() {
     const std::set<Pattern> patterns = fptree_growth( fptree );
     
     assert( patterns.size() == 19 );
-    assert( patterns.count( { e, b } ) );
-    assert( patterns.count( { e } ) );
-    assert( patterns.count( { a, b, e } ) );
-    assert( patterns.count( { a, b } ) );
-    assert( patterns.count( { a, e } ) );
-    assert( patterns.count( { a } ) );
-    assert( patterns.count( { d, a, b } ) );
-    assert( patterns.count( { d, a } ) );
-    assert( patterns.count( { d, e, b, a } ) );
-    assert( patterns.count( { d, e, b } ) );
-    assert( patterns.count( { d, e, a } ) );
-    assert( patterns.count( { d, e } ) );
-    assert( patterns.count( { d, b } ) );
-    assert( patterns.count( { d } ) );
-    assert( patterns.count( { c, e, b } ) );
-    assert( patterns.count( { c, e } ) );
-    assert( patterns.count( { c, b } ) );
-    assert( patterns.count( { c } ) );
-    assert( patterns.count( { b } ) );
+    assert( patterns.count( { { e, b }, 5 } ) );
+    assert( patterns.count( { { e }, 5 } ) );
+    assert( patterns.count( { { a, b, e }, 4 } ) );
+    assert( patterns.count( { { a, b }, 4 } ) );
+    assert( patterns.count( { { a, e }, 4 } ) );
+    assert( patterns.count( { { a }, 4 } ) );
+    assert( patterns.count( { { d, a, b }, 3 } ) );
+    assert( patterns.count( { { d, a }, 3 } ) );
+    assert( patterns.count( { { d, e, b, a }, 3 } ) );
+    assert( patterns.count( { { d, e, b }, 3 } ) );
+    assert( patterns.count( { { d, e, a }, 3 } ) );
+    assert( patterns.count( { { d, e }, 3 } ) );
+    assert( patterns.count( { { d, b }, 4 } ) );
+    assert( patterns.count( { { d }, 4 } ) );
+    assert( patterns.count( { { c, e, b }, 3 } ) );
+    assert( patterns.count( { { c, e }, 3 } ) );
+    assert( patterns.count( { { c, b }, 4 } ) );
+    assert( patterns.count( { { c }, 4 } ) );
+    assert( patterns.count( { { b }, 6 } ) );
 }
 
 void test_3() {
@@ -132,24 +132,24 @@ void test_3() {
     const std::set<Pattern> patterns = fptree_growth( fptree );
     
     assert( patterns.size() == 18 );
-    assert( patterns.count( { f } ) );
-    assert( patterns.count( { c, f } ) );
-    assert( patterns.count( { c } ) );
-    assert( patterns.count( { b } ) );
-    assert( patterns.count( { p, c } ) );
-    assert( patterns.count( { p } ) );
-    assert( patterns.count( { m, f, c } ) );
-    assert( patterns.count( { m, f } ) );
-    assert( patterns.count( { m, c } ) );
-    assert( patterns.count( { m } ) );
-    assert( patterns.count( { a, f, c, m } ) );
-    assert( patterns.count( { a, f, c } ) );
-    assert( patterns.count( { a, f, m } ) );
-    assert( patterns.count( { a, f } ) );
-    assert( patterns.count( { a, c, m } ) );
-    assert( patterns.count( { a, c } ) );
-    assert( patterns.count( { a, m } ) );
-    assert( patterns.count( { a } ) );
+    assert( patterns.count( { { f }, 4 } ) );
+    assert( patterns.count( { { c, f }, 3 } ) );
+    assert( patterns.count( { { c }, 4 } ) );
+    assert( patterns.count( { { b }, 3 } ) );
+    assert( patterns.count( { { p, c }, 3 } ) );
+    assert( patterns.count( { { p }, 3 } ) );
+    assert( patterns.count( { { m, f, c }, 3 } ) );
+    assert( patterns.count( { { m, f }, 3 } ) );
+    assert( patterns.count( { { m, c }, 3 } ) );
+    assert( patterns.count( { { m }, 3 } ) );
+    assert( patterns.count( { { a, f, c, m }, 3 } ) );
+    assert( patterns.count( { { a, f, c }, 3 } ) );
+    assert( patterns.count( { { a, f, m }, 3 } ) );
+    assert( patterns.count( { { a, f }, 3 } ) );
+    assert( patterns.count( { { a, c, m }, 3 } ) );
+    assert( patterns.count( { { a, c }, 3 } ) );
+    assert( patterns.count( { { a, m }, 3 } ) );
+    assert( patterns.count( { { a }, 3 } ) );
 }
 
 int main(int argc, const char *argv[]) {
