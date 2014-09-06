@@ -13,7 +13,7 @@ FPNode::FPNode(const Item& item, const std::shared_ptr<FPNode>& parent) :
 
 
 FPTree::FPTree(const std::vector<Transaction>& transactions, unsigned minimum_support_treshold) :
-    root( nullptr ), header_table(), minimum_support_treshold( minimum_support_treshold )
+    root( std::make_shared<FPNode>( Item{}, nullptr ) ), header_table(), minimum_support_treshold( minimum_support_treshold )
 {
     // scan the transactions counting the frequence of each item
     std::map<Item, unsigned> frequency_by_item;
@@ -44,7 +44,6 @@ FPTree::FPTree(const std::vector<Transaction>& transactions, unsigned minimum_su
     }
 
     // start tree construction
-    root = std::make_shared<FPNode>( Item{}, nullptr );
     
     // scan the transactions again
     for ( const Transaction& transaction : transactions ) {
@@ -94,18 +93,25 @@ FPTree::FPTree(const std::vector<Transaction>& transactions, unsigned minimum_su
     }
 }
 
+bool FPTree::empty() const {
+    assert( root );
+    return root->children.size() == 0;
+}
+
 
 bool contains_single_path(const std::shared_ptr<FPNode>& fpnode) {
-    if ( !fpnode || fpnode->children.size() == 0 ) { return true; }
+    assert( fpnode );
+    if ( fpnode->children.size() == 0 ) { return true; }
     if ( fpnode->children.size() > 1 ) { return false; }
     return contains_single_path( fpnode->children.front() );
 }
 bool contains_single_path(const FPTree& fptree) {
+    if ( fptree.empty() ) { return true; }
     return contains_single_path( fptree.root );
 }
                           
 std::set<Pattern> fptree_growth(const FPTree& fptree) {
-    if ( fptree.empty() ) { return std::set<Pattern>(); }
+    if ( fptree.empty() ) { return std::set<Pattern>{}; }
     
     if ( contains_single_path( fptree ) ) {
         // generate all possible combinations of the items in the tree

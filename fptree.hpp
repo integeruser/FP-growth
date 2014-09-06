@@ -33,7 +33,7 @@ struct FPTree {
     
     FPTree(const std::vector<Transaction>&, unsigned);
     
-    bool empty() const { return !root || root->children.size() == 0; }
+    bool empty() const;
 };
 
 
