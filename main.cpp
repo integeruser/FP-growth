@@ -127,7 +127,6 @@ void test_3() {
     
     const unsigned minimum_support_treshold = 3;
 
-    
     const FPTree fptree{ transactions, minimum_support_treshold };
     
     const std::set<Pattern> patterns = fptree_growth( fptree );
