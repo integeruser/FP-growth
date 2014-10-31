@@ -57,7 +57,7 @@ FPTree::FPTree(const std::vector<Transaction>& transactions, unsigned minimum_su
                 // insert item in the tree
             
                 // check if curr_fpnode has a child curr_fpnode_child such that curr_fpnode_child.item = item
-                const auto it = std::find_if ( curr_fpnode->children.cbegin(), curr_fpnode->children.cend(), [item](const std::shared_ptr<FPNode>& fpnode) {
+                const auto it = std::find_if( curr_fpnode->children.cbegin(), curr_fpnode->children.cend(), [item](const std::shared_ptr<FPNode>& fpnode) {
                     return fpnode->item == item;
                 } );
                 if ( it == curr_fpnode->children.cend() ) {
