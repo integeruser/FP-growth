@@ -11,13 +11,11 @@ FPNode::FPNode(const Item& item, const std::shared_ptr<FPNode>& parent) :
 {
 }
 
-
-
-FPTree::FPTree(const std::vector<Transaction>& transactions, uint64_t minimum_support_treshold) :
+FPTree::FPTree(const std::vector<Transaction>& transactions, uint64_t minimum_support_threshold) :
     root( std::make_shared<FPNode>( Item{}, nullptr ) ), header_table(),
-    minimum_support_treshold( minimum_support_treshold )
+    minimum_support_threshold( minimum_support_threshold )
 {
-    // scan the transactions counting the frequence of each item
+    // scan the transactions counting the frequency of each item
     std::map<Item, uint64_t> frequency_by_item;
     for ( const Transaction& transaction : transactions ) {
         for ( const Item& item : transaction ) {
@@ -25,10 +23,10 @@ FPTree::FPTree(const std::vector<Transaction>& transactions, uint64_t minimum_su
         }
     }
 
-    // keep only items which have a frequency greater or equal than the minimum support treshold
+    // keep only items which have a frequency greater or equal than the minimum support threshold
     for ( auto it = frequency_by_item.cbegin(); it != frequency_by_item.cend(); ) {
         const uint64_t item_frequency = (*it).second;
-        if ( item_frequency < minimum_support_treshold ) { frequency_by_item.erase( it++ ); }
+        if ( item_frequency < minimum_support_threshold ) { frequency_by_item.erase( it++ ); }
         else { ++it; }
     }
 
@@ -212,7 +210,7 @@ std::set<Pattern> fptree_growth(const FPTree& fptree)
             }
 
             // build the conditional fptree relative to the current item with the transactions just generated
-            const FPTree conditional_fptree( conditional_fptree_transactions, fptree.minimum_support_treshold );
+            const FPTree conditional_fptree( conditional_fptree_transactions, fptree.minimum_support_threshold );
             // call recursively fptree_growth on the conditional fptree (empty fptree: no patterns)
             std::set<Pattern> conditional_patterns = fptree_growth( conditional_fptree );
 
