@@ -6,13 +6,14 @@
 #include "fptree.hpp"
 
 
-void test_1() {
+void test_1()
+{
     const Item a{ "A" };
     const Item b{ "B" };
     const Item c{ "C" };
     const Item d{ "D" };
     const Item e{ "E" };
-    
+
     const std::vector<Transaction> transactions{
         { a, b },
         { b, c, d },
@@ -25,13 +26,13 @@ void test_1() {
         { a, b, d },
         { b, c, e }
     };
-    
+
     const unsigned minimum_support_treshold = 2;
-    
+
     const FPTree fptree{ transactions, minimum_support_treshold };
-    
+
     const std::set<Pattern> patterns = fptree_growth( fptree );
-    
+
     assert( patterns.size() == 19 );
     assert( patterns.count( { { a }, 8 } ) );
     assert( patterns.count( { { b, a }, 5 } ) );
@@ -54,13 +55,14 @@ void test_1() {
     assert( patterns.count( { { e }, 3 } ) );
 }
 
-void test_2() {
+void test_2()
+{
     const Item a{ "A" };
     const Item b{ "B" };
     const Item c{ "C" };
     const Item d{ "D" };
     const Item e{ "E" };
-    
+
     const std::vector<Transaction> transactions{
         { a, b, d, e },
         { b, c, e },
@@ -69,13 +71,13 @@ void test_2() {
         { a, b, c, d, e },
         { b, c, d },
     };
-    
+
     const unsigned minimum_support_treshold = 3;
-    
+
     const FPTree fptree{ transactions, minimum_support_treshold };
-    
+
     const std::set<Pattern> patterns = fptree_growth( fptree );
-    
+
     assert( patterns.size() == 19 );
     assert( patterns.count( { { e, b }, 5 } ) );
     assert( patterns.count( { { e }, 5 } ) );
@@ -98,7 +100,8 @@ void test_2() {
     assert( patterns.count( { { b }, 6 } ) );
 }
 
-void test_3() {
+void test_3()
+{
     const Item a{ "A" };
     const Item b{ "B" };
     const Item c{ "C" };
@@ -116,7 +119,7 @@ void test_3() {
     const Item o{ "O" };
     const Item p{ "P" };
     const Item s{ "S" };
-    
+
     const std::vector<Transaction> transactions{
         { f, a, c, d, g, i, m, p },
         { a, b, c, f, l, m, o },
@@ -124,13 +127,13 @@ void test_3() {
         { b, c, k, s, p },
         { a, f, c, e, l, p, m, n }
     };
-    
+
     const unsigned minimum_support_treshold = 3;
 
     const FPTree fptree{ transactions, minimum_support_treshold };
-    
+
     const std::set<Pattern> patterns = fptree_growth( fptree );
-    
+
     assert( patterns.size() == 18 );
     assert( patterns.count( { { f }, 4 } ) );
     assert( patterns.count( { { c, f }, 3 } ) );
@@ -152,11 +155,12 @@ void test_3() {
     assert( patterns.count( { { a }, 3 } ) );
 }
 
-int main(int argc, const char *argv[]) {
+int main(int argc, const char *argv[])
+{
     test_1();
     test_2();
     test_3();
     std::cout << "All tests passed!" << std::endl;
-    
+
     return EXIT_SUCCESS;
 }

@@ -21,7 +21,7 @@ struct FPNode {
     std::shared_ptr<FPNode> node_link;
     std::shared_ptr<FPNode> parent;
     std::vector<std::shared_ptr<FPNode>> children;
-    
+
     FPNode(const Item&, const std::shared_ptr<FPNode>&);
 };
 
@@ -31,9 +31,9 @@ struct FPTree {
     std::shared_ptr<FPNode> root;
     std::map<Item, std::shared_ptr<FPNode>> header_table;
     unsigned minimum_support_treshold;
-    
+
     FPTree(const std::vector<Transaction>&, unsigned);
-    
+
     bool empty() const;
 };
 
