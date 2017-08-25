@@ -27,9 +27,9 @@ void test_1()
         { b, c, e }
     };
 
-    const auto minimum_support_treshold = 2;
+    const auto minimum_support_threshold = 2;
 
-    const FPTree fptree{ transactions, minimum_support_treshold };
+    const FPTree fptree{ transactions, minimum_support_threshold };
 
     const std::set<Pattern> patterns = fptree_growth( fptree );
 
@@ -72,9 +72,9 @@ void test_2()
         { b, c, d },
     };
 
-    const auto minimum_support_treshold = 3;
+    const auto minimum_support_threshold = 3;
 
-    const FPTree fptree{ transactions, minimum_support_treshold };
+    const FPTree fptree{ transactions, minimum_support_threshold };
 
     const std::set<Pattern> patterns = fptree_growth( fptree );
 
@@ -128,9 +128,9 @@ void test_3()
         { a, f, c, e, l, p, m, n }
     };
 
-    const auto minimum_support_treshold = 3;
+    const auto minimum_support_threshold = 3;
 
-    const FPTree fptree{ transactions, minimum_support_treshold };
+    const FPTree fptree{ transactions, minimum_support_threshold };
 
     const std::set<Pattern> patterns = fptree_growth( fptree );
 
