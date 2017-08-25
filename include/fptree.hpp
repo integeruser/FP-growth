@@ -1,6 +1,7 @@
 #ifndef FPTREE_HPP
 #define FPTREE_HPP
 
+#include <cstdint>
 #include <map>
 #include <memory>
 #include <set>
@@ -11,13 +12,13 @@
 
 using Item = std::string;
 using Transaction = std::vector<Item>;
-using TransformedPrefixPath = std::pair<std::vector<Item>, unsigned>;
-using Pattern = std::pair<std::set<Item>, unsigned>;
+using TransformedPrefixPath = std::pair<std::vector<Item>, uint64_t>;
+using Pattern = std::pair<std::set<Item>, uint64_t>;
 
 
 struct FPNode {
     const Item item;
-    unsigned frequency;
+    uint64_t frequency;
     std::shared_ptr<FPNode> node_link;
     std::shared_ptr<FPNode> parent;
     std::vector<std::shared_ptr<FPNode>> children;
@@ -30,9 +31,9 @@ struct FPNode {
 struct FPTree {
     std::shared_ptr<FPNode> root;
     std::map<Item, std::shared_ptr<FPNode>> header_table;
-    unsigned minimum_support_treshold;
+    uint64_t minimum_support_treshold;
 
-    FPTree(const std::vector<Transaction>&, unsigned);
+    FPTree(const std::vector<Transaction>&, uint64_t);
 
     bool empty() const;
 };
