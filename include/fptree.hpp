@@ -20,7 +20,7 @@ struct FPNode {
     const Item item;
     uint64_t frequency;
     std::shared_ptr<FPNode> node_link;
-    std::shared_ptr<FPNode> parent;
+    std::weak_ptr<FPNode> parent;
     std::vector<std::shared_ptr<FPNode>> children;
 
     FPNode(const Item&, const std::shared_ptr<FPNode>&);

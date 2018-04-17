@@ -175,18 +175,18 @@ std::set<Pattern> fptree_growth(const FPTree& fptree)
                 // each item in th transformed prefix path has the same frequency (the frequency of path_starting_fpnode)
                 const uint64_t path_starting_fpnode_frequency = path_starting_fpnode->frequency;
 
-                auto curr_path_fpnode = path_starting_fpnode->parent;
+                auto curr_path_fpnode = path_starting_fpnode->parent.lock();
                 // check if curr_path_fpnode is already the root of the fptree
-                if ( curr_path_fpnode->parent ) {
+                if ( curr_path_fpnode->parent.lock() ) {
                     // the path has at least one node (excluding the starting node and the root)
                     TransformedPrefixPath transformed_prefix_path{ {}, path_starting_fpnode_frequency };
 
-                    while ( curr_path_fpnode->parent ) {
+                    while ( curr_path_fpnode->parent.lock() ) {
                         assert( curr_path_fpnode->frequency >= path_starting_fpnode_frequency );
                         transformed_prefix_path.first.push_back( curr_path_fpnode->item );
 
                         // advance to the next node in the path
-                        curr_path_fpnode = curr_path_fpnode->parent;
+                        curr_path_fpnode = curr_path_fpnode->parent.lock();
                     }
 
                     conditional_pattern_base.push_back( transformed_prefix_path );
