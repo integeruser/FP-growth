@@ -31,18 +31,14 @@ FPTree::FPTree(const std::vector<Transaction>& transactions, uint64_t minimum_su
     }
 
     // order items by decreasing frequency
-    struct decreasing_order_comparator {
-        bool operator() (const std::pair<uint64_t, Item>& lhs, const std::pair<uint64_t, Item>& rhs) const
+    struct frequency_comparator
+    {
+        bool operator()(const std::pair<Item, uint64_t> &lhs, const std::pair<Item, uint64_t> &rhs) const
         {
-            return (lhs.first > rhs.first) or (not(lhs.first > rhs.first) and lhs.second < rhs.second);
+            return std::tie(lhs.second, lhs.first) > std::tie(rhs.second, rhs.first);
         }
     };
-    std::set<std::pair<uint64_t, Item>, decreasing_order_comparator> items_ordered_by_frequency;
-    for ( const auto& pair : frequency_by_item ) {
-        const Item& item = pair.first;
-        const uint64_t frequency = pair.second;
-        items_ordered_by_frequency.insert( { frequency, item } );
-    }
+    std::set<std::pair<Item, uint64_t>, frequency_comparator> items_ordered_by_frequency(frequency_by_item.cbegin(), frequency_by_item.cend());
 
     // start tree construction
 
@@ -52,7 +48,7 @@ FPTree::FPTree(const std::vector<Transaction>& transactions, uint64_t minimum_su
 
         // select and sort the frequent items in transaction according to the order of items_ordered_by_frequency
         for ( const auto& pair : items_ordered_by_frequency ) {
-            const Item& item = pair.second;
+            const Item& item = pair.first;
 
             // check if item is contained in the current transaction
             if ( std::find( transaction.cbegin(), transaction.cend(), item ) != transaction.cend() ) {
