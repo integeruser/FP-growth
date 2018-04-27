@@ -108,7 +108,7 @@ bool contains_single_path(const std::shared_ptr<FPNode>& fpnode)
 }
 bool contains_single_path(const FPTree& fptree)
 {
-    return fptree.empty() or contains_single_path( fptree.root );
+    return fptree.empty() || contains_single_path( fptree.root );
 }
 
 std::set<Pattern> fptree_growth(const FPTree& fptree)
