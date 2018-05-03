@@ -27,7 +27,7 @@ void test_1()
         { b, c, e }
     };
 
-    const auto minimum_support_threshold = 2;
+    const uint64_t minimum_support_threshold = 2;
 
     const FPTree fptree{ transactions, minimum_support_threshold };
 
@@ -72,7 +72,7 @@ void test_2()
         { b, c, d },
     };
 
-    const auto minimum_support_threshold = 3;
+    const uint64_t minimum_support_threshold = 3;
 
     const FPTree fptree{ transactions, minimum_support_threshold };
 
@@ -128,7 +128,7 @@ void test_3()
         { a, f, c, e, l, p, m, n }
     };
 
-    const auto minimum_support_threshold = 3;
+    const uint64_t minimum_support_threshold = 3;
 
     const FPTree fptree{ transactions, minimum_support_threshold };
 
